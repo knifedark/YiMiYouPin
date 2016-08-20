@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    tools:context="com.wangbo.www.yimiyoupin.activity.MagazineDetailsA">
+
+    <ScrollView
+        android:id="@+id/scrollView_imageInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="30dp"
+                android:id="@+id/textview_title_Magazine_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="#000"
+                android:gravity="center"/>
+            <TextView
+                android:layout_below="@+id/textview_title_Magazine_detail"
+                android:id="@+id/textview_subtitle_Magazine_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center"/>/>
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_below="@+id/textview_subtitle_Magazine_detail"
+                android:id="@+id/simpleDraweeView_Title"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                fresco:actualImageScaleType="centerInside"
+                fresco:roundAsCircle="true" />
+
+            <WebView
+                android:layout_below="@+id/simpleDraweeView_Title"
+                android:id="@+id/webview_magazineinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffffff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/webview_magazineinfo"
+                android:background="#000" />
+
+            <TextView
+                android:id="@+id/text_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/webview_magazineinfo"
+                android:gravity="center"
+                android:text="分享这篇文章" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_shared_sina"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text_note"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="50dp"
+                android:background="#0000"
+                android:scaleType="centerInside"
+                android:src="@drawable/sina" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_shared_QQ"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@+id/imagebutton_shared_sina"
+                android:layout_below="@+id/text_note"
+                android:layout_toRightOf="@+id/imagebutton_shared_sina"
+                android:background="#0000"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wqq" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_shared_weixin"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@+id/imagebutton_shared_sina"
+                android:layout_below="@+id/text_note"
+                android:layout_toLeftOf="@+id/imagebutton_shared_sina"
+                android:background="#0000"
+                android:scaleType="centerInside"
+                android:src="@drawable/weixin" />
+            <LinearLayout
+                android:layout_below="@+id/imagebutton_shared_sina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:orientation="vertical"
+               android:padding="20dp">
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="相关设计师"
+                    android:textColor="#ffff"/>
+                <include
+                    android:id="@+id/desginer_refor"
+                    layout="@layout/desginerinfo_detail"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/layout_desginerinfotop"
+        layout="@layout/desginerinfotop" />
+
+
+</RelativeLayout>

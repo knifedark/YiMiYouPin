@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/desginerInfo_infotop"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <include layout="@layout/button_back" />
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/designerinfor">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/simpleDraweeView_DesginerInfo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            fresco:actualImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/textView_DessignName_MagnizeDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="english"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:layout_toLeftOf="@+id/simpleDraweeView_DesginerInfo"/>
+        <TextView
+            android:id="@+id/textView_City_MagnizeDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="english"
+            android:textSize="10sp"
+            android:textColor="#ffffff"
+            android:layout_toLeftOf="@+id/simpleDraweeView_DesginerInfo"
+            android:layout_below="@+id/textView_DessignName_MagnizeDetail"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
