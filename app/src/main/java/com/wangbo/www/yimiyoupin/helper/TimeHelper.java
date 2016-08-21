@@ -7,7 +7,7 @@ public class TimeHelper {
 
     /**
      *该方法能够将事件戳转化为对应的几天，几小时，几分钟前
-     * @param timeStr   从网络中获取的时间戳
+     * @param timeStr   从网络中获取的时间戳 单位为ms
      * @return  //返回处理好的数据
      */
     public static String getStandardDate(String timeStr) {
@@ -15,7 +15,7 @@ public class TimeHelper {
         StringBuffer sb = new StringBuffer();
 
         long t = Long.parseLong(timeStr);
-        long time = System.currentTimeMillis() - (t*1000);
+        long time = System.currentTimeMillis() - (t);
         long mill = (long) Math.ceil(time /1000);//秒前
 
         long minute = (long) Math.ceil(time/60/1000.0f);// 分钟前

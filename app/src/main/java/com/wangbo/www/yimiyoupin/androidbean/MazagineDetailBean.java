@@ -1,5 +1,8 @@
 package com.wangbo.www.yimiyoupin.androidbean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -278,7 +281,7 @@ public class MazagineDetailBean {
             }
         }
 
-        public static class CommentsBean {
+        public static class CommentsBean  implements Parcelable{
             private String content;
             private long created_at;
             private int id;
@@ -294,6 +297,26 @@ public class MazagineDetailBean {
              */
 
             private AuthorBean author;
+
+            protected CommentsBean(Parcel in) {
+                content = in.readString();
+                created_at = in.readLong();
+                id = in.readInt();
+                author = in.readParcelable(AuthorBean.class.getClassLoader());
+            }
+
+
+            public static final Creator<CommentsBean> CREATOR = new Creator<CommentsBean>() {
+                @Override
+                public CommentsBean createFromParcel(Parcel in) {
+                    return new CommentsBean(in);
+                }
+
+                @Override
+                public CommentsBean[] newArray(int size) {
+                    return new CommentsBean[size];
+                }
+            };
 
             public String getContent() {
                 return content;
@@ -327,7 +350,20 @@ public class MazagineDetailBean {
                 this.author = author;
             }
 
-            public static class AuthorBean {
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(content);
+                dest.writeLong(created_at);
+                dest.writeInt(id);
+                dest.writeParcelable(author, flags);
+            }
+
+            public static class AuthorBean implements Parcelable{
                 private String username;
                 private String gender;
                 private long birthday;
@@ -336,6 +372,29 @@ public class MazagineDetailBean {
                 private String avatar_url;
                 private String sign;
                 private int id;
+
+                protected AuthorBean(Parcel in) {
+                    username = in.readString();
+                    gender = in.readString();
+                    birthday = in.readLong();
+                    email = in.readString();
+                    phone = in.readString();
+                    avatar_url = in.readString();
+                    sign = in.readString();
+                    id = in.readInt();
+                }
+
+                public static final Creator<AuthorBean> CREATOR = new Creator<AuthorBean>() {
+                    @Override
+                    public AuthorBean createFromParcel(Parcel in) {
+                        return new AuthorBean(in);
+                    }
+
+                    @Override
+                    public AuthorBean[] newArray(int size) {
+                        return new AuthorBean[size];
+                    }
+                };
 
                 public String getUsername() {
                     return username;
@@ -399,6 +458,23 @@ public class MazagineDetailBean {
 
                 public void setId(int id) {
                     this.id = id;
+                }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(username);
+                    dest.writeString(gender);
+                    dest.writeLong(birthday);
+                    dest.writeString(email);
+                    dest.writeString(phone);
+                    dest.writeString(avatar_url);
+                    dest.writeString(sign);
+                    dest.writeInt(id);
                 }
             }
         }

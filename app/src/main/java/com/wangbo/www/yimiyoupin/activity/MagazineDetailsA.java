@@ -6,13 +6,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.MotionEvent;
+import android.os.Parcelable;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -26,12 +27,9 @@ import com.wangbo.www.yimiyoupin.helper.OkHttpClientHelper;
 import com.wangbo.www.yimiyoupin.helper.ParserObjectFromJson;
 import com.wangbo.www.yimiyoupin.helper.SwipeBackToolBarActivity;
 import com.wangbo.www.yimiyoupin.interfacepak.MyInterface;
-
 import java.io.IOException;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInterface, View.OnClickListener {
     private TextView textviewTitleMagazineDetail;
@@ -63,9 +61,16 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private ScrollView scrollView_imageInfo;
     private RelativeLayout layout_desginerinfotop;
     private boolean flag = false;
+    private TextView textview_collectionNum;
+    private TextView textview_commentNum;
+    private ImageView  imageview_comment;
+    private TextView textview_saysomething;
+    private int commentNum;
+    private int collectionNum;
+    List<MazagineDetailBean.DataBean.CommentsBean> list_comments ;
 
 
-    String CSS_STYPE = "<head><style>*{font-family:'微软雅黑';font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} h2{text-align:center;} img {max-width:100%;display:block;margin-top:16px}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
+    String CSS_STYPE = "<head><style>*{font-family:'微软雅黑';font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} h2{text-align:center;} img {max-width:100%;display:block;margin-top:16px;}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
     private static final String STARTURL = "http://design.zuimeia.com/api/v1/article/";//拼凑地址前半部分
     //拼凑地址后半部分
     private static final String ENDTURL = "/?device_id=867905022979506&platform=android&lang=zh&appVersion=1.1.7&appVersionCode=10107&systemVersion=22&countryCode=CN&user_id=39146&token=4el-0ada01cde1909345cb58&package_name=com.zuiapps.zuiworld";
@@ -84,6 +89,8 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                     simpleDraweeViewDesginerInfoInfor.setImageURI(Uri.parse(designersIamgeurl));
                     textviewIntroduceInfoDetail.setText(designerslabel);
                     webviewMagazineinfo.loadDataWithBaseURL(null, CSS_STYPE + stringHtml, "text/html", "utf_8", null);
+                    textview_collectionNum.setText(collectionNum+"");
+                    textview_commentNum.setText(commentNum+"");
 
                     break;
                 case 1:
@@ -125,11 +132,18 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
         simpleDraweeViewDesginerInfo = (SimpleDraweeView) findViewById(R.id.simpleDraweeView_DesginerInfo);
         textViewDessignNameMagnizeDetail = (TextView) findViewById(R.id.textView_DessignName_MagnizeDetail);
         textViewCityMagnizeDetail = (TextView) findViewById(R.id.textView_City_MagnizeDetail);
+        imageview_comment = (ImageView) findViewById(R.id.imageview_comment);
+        scrollView_imageInfo = (ScrollView) findViewById(R.id.scrollView_imageInfo);
+        layout_desginerinfotop = (RelativeLayout) findViewById(R.id.layout_desginerinfotop);
+        textview_collectionNum = (TextView) findViewById(R.id.textview_collectionNum);
+        textview_commentNum = (TextView) findViewById(R.id.textview_commentNum);
+        textview_saysomething= (TextView) findViewById(R.id.textview_saysomething);
         imagebuttonSharedSina.setOnClickListener(this);
         imagebuttonSharedQQ.setOnClickListener(this);
         imagebuttonSharedWeixin.setOnClickListener(this);
-        scrollView_imageInfo = (ScrollView) findViewById(R.id.scrollView_imageInfo);
-        layout_desginerinfotop = (RelativeLayout) findViewById(R.id.layout_desginerinfotop);
+        imageview_comment.setOnClickListener(this);
+        textview_saysomething.setOnClickListener(this);
+
 
 
 
@@ -169,6 +183,9 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                     designersCity = designers.getCity();
                     designersIamgeurl = designers.getAvatar_url();
                     designerslabel = designers.getLabel();
+                    commentNum=data.getComment_num();
+                    collectionNum=data.getLike_user_num();
+                    list_comments=data.getComments();
 
 
                     mhandler.sendEmptyMessage(0);
@@ -200,6 +217,15 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                 break;
             case R.id.imagebutton_back:
                 this.finish();//点击销毁当前页面
+                break;
+            case R.id.textview_saysomething:
+            case R.id.imageview_comment:
+                Intent intent = new Intent();
+                intent.setClass(mContext,CommentActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) list_comments);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
         }
     }

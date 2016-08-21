@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+<com.facebook.drawee.view.SimpleDraweeView
+    android:id="@+id/image_havething_big"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#fff"
+            android:background="#000"
+            android:padding="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/text_haveting_digest"
+            android:text="asd11"
+            android:id="@+id/text_havething_productname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#fff"
+            android:background="#000"
+            android:paddingBottom="7dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="asd"
+            android:id="@+id/text_haveting_digest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+</RelativeLayout>
+    <RelativeLayout
+        android:background="#000"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImageScaleType="centerCrop"
+            android:id="@+id/image_havething_touxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/text_havething_name"
+            android:layout_toRightOf="@+id/image_havething_touxiang"
+            android:text="sad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#fff"
+            android:text="213"
+            android:layout_toRightOf="@+id/image_havething_touxiang"
+            android:layout_below="@+id/text_havething_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:src="@drawable/xiaolian"
+            android:id="@+id/image_havething_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/image_havething_left"
+            android:paddingRight="17dp"
+            android:src="@drawable/kulian"
+            android:layout_toLeftOf="@+id/image_havething_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
