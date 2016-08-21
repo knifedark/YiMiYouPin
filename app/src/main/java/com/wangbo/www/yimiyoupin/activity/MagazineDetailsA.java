@@ -65,7 +65,7 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private boolean flag = false;
 
 
-    String CSS_STYPE = "<head><style>* {font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} img {max-width:100%;}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
+    String CSS_STYPE = "<head><style>*{font-family:'微软雅黑';font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} h2{text-align:center;} img {max-width:100%;display:block;margin-top:16px}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
     private static final String STARTURL = "http://design.zuimeia.com/api/v1/article/";//拼凑地址前半部分
     //拼凑地址后半部分
     private static final String ENDTURL = "/?device_id=867905022979506&platform=android&lang=zh&appVersion=1.1.7&appVersionCode=10107&systemVersion=22&countryCode=CN&user_id=39146&token=4el-0ada01cde1909345cb58&package_name=com.zuiapps.zuiworld";
@@ -130,35 +130,7 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
         imagebuttonSharedWeixin.setOnClickListener(this);
         scrollView_imageInfo = (ScrollView) findViewById(R.id.scrollView_imageInfo);
         layout_desginerinfotop = (RelativeLayout) findViewById(R.id.layout_desginerinfotop);
-        scrollView_imageInfo.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                float lastY = 0;
 
-                switch (event.getAction()) {
-
-                    case MotionEvent.ACTION_DOWN:
-                        lastY = event.getY();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-
-                        float disY = event.getY() - lastY;
-
-                        //垂直方向滑动
-                        if (disY > 0) {
-                            layout_desginerinfotop.setVisibility(View.GONE);
-                        }else if(disY < 0){
-                            layout_desginerinfotop.setVisibility(View.VISIBLE);
-                        }
-                        //是否向上滑动
-
-
-                        break;
-                }
-
-                return false;
-            }
-        });
 
 
     }

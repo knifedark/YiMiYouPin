@@ -100,13 +100,18 @@
                 android:layout_height="wrap_content"
                 android:background="#000000"
                 android:orientation="vertical"
-               android:padding="20dp">
+               android:paddingBottom="40dp"
+               android:paddingRight="5dp"
+               android:paddingLeft="5dp"
+                android:paddingTop="20dp"
+                >
                 <TextView
                     android:id="@+id/note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="相关设计师"
-                    android:textColor="#ffff"/>
+                    android:textColor="#ffff"
+                    android:layout_marginBottom="10dp"/>
                 <include
                     android:id="@+id/desginer_refor"
                     layout="@layout/desginerinfo_detail"/>
@@ -121,6 +126,7 @@
     <include
         android:id="@+id/layout_desginerinfotop"
         layout="@layout/desginerinfotop" />
+
 
 
 </RelativeLayout>
