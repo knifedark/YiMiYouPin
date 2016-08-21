@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrTabTitles">
+        <item>画板</item>
+        <item>有物</item>
+        <item>设计师</item>
+        <item>我</item>
+    </string-array>
+    <array name="arrIconDrawable">
+        <item>@drawable/huaban</item>
+        <item>@drawable/weixiao</item>
+        <item>@drawable/huabi</item>
+        <item>@drawable/rentou</item>
+    </array>
+    <string-array name="arrTitles">
+        <item>有物</item>
+        <item>包袋</item>
+        <item>鞋履</item>
+        <item>首饰</item>
+        <item>配饰</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>

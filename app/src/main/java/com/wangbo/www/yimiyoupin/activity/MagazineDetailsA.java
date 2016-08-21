@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -65,8 +66,10 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private TextView textview_commentNum;
     private ImageView  imageview_comment;
     private TextView textview_saysomething;
+    private int desginerurlid ;//声明设计师id
     private int commentNum;
     private int collectionNum;
+    private LinearLayout linearlayout_refer_desginer;
     List<MazagineDetailBean.DataBean.CommentsBean> list_comments ;
 
 
@@ -138,6 +141,8 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
         textview_collectionNum = (TextView) findViewById(R.id.textview_collectionNum);
         textview_commentNum = (TextView) findViewById(R.id.textview_commentNum);
         textview_saysomething= (TextView) findViewById(R.id.textview_saysomething);
+        linearlayout_refer_desginer= (LinearLayout) findViewById(R.id.linearlayout_refer_desginer);
+        linearlayout_refer_desginer.setOnClickListener(this);
         imagebuttonSharedSina.setOnClickListener(this);
         imagebuttonSharedQQ.setOnClickListener(this);
         imagebuttonSharedWeixin.setOnClickListener(this);
@@ -183,9 +188,11 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                     designersCity = designers.getCity();
                     designersIamgeurl = designers.getAvatar_url();
                     designerslabel = designers.getLabel();
+                    desginerurlid = designers.getId();
                     commentNum=data.getComment_num();
                     collectionNum=data.getLike_user_num();
                     list_comments=data.getComments();
+
 
 
                     mhandler.sendEmptyMessage(0);
@@ -227,6 +234,13 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
+            case R.id.linearlayout_refer_desginer:
+                Intent intent_desginer = new Intent();
+                intent_desginer.setClass(mContext,CommentActivity.class);
+                intent_desginer.putExtra("desginerurlid",desginerurlid);
+                startActivity(intent_desginer);
+                break;
+
         }
     }
 }

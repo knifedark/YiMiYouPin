@@ -18,7 +18,6 @@ import com.wangbo.www.yimiyoupin.cusview.CardView;
 import com.wangbo.www.yimiyoupin.helper.OkHttpClientHelper;
 import com.wangbo.www.yimiyoupin.helper.Utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

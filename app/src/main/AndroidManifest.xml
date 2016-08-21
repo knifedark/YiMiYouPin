@@ -23,6 +23,7 @@
         <activity
             android:name=".activity.CommentActivity"
             android:theme="@style/otherPageStyle" />
+        <activity android:name=".activity.DesginerInfomationActivity"></activity>
     </application>
 
 </manifest>
