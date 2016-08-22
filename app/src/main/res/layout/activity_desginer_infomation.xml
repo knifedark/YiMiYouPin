@@ -2,21 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_image"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
             <include layout="@layout/button_back" />
-            <include layout="@layout/desginerinfo_detail"
+
+            <include
+                android:id="@+id/info"
+                layout="@layout/desginerinfo_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/viewpager_image"/>
+                android:layout_below="@+id/viewpager_image" />
+
+            <TextView
+                android:id="@+id/textview_desginerinfo_concept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/info"
+                android:textSize="23sp" />
+
+            <Button
+                android:id="@+id/button_desginerinfo_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textview_desginerinfo_concept"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/textview_description_desginerinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_desginerinfo_collection"
+                android:textSize="23sp" />
+
+            <TableLayout
+                android:id="@+id/tablayout_description_desginerinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textview_description_desginerinfo" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_description_desginerinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tablayout_description_desginerinfo" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>
