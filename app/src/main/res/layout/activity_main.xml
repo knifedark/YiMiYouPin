@@ -6,7 +6,6 @@
     <Button
         android:id="@+id/button_activitymagazine"
         android:layout_width="wrap_content"
-        android:onClick="onclick"
         android:layout_height="wrap_content"
         android:text="跳转至详情页面"
         android:layout_gravity="center_horizontal"

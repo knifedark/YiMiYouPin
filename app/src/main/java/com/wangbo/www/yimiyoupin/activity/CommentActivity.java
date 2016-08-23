@@ -6,16 +6,12 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wangbo.www.yimiyoupin.R;
@@ -36,7 +32,6 @@ import java.util.List;
 public class CommentActivity extends SwipeBackToolBarActivity implements MyInterface {
     private List<MazagineDetailBean.DataBean.CommentsBean> list;
     private Toolbar toolbar_commentactivity;
-    private PullToRefreshScrollView pullToRefreshScrollView_comment;
     private XRecyclerView xrecyclerview_comment;
     private SimpleDraweeView simpleDraweeView_comment_username;
     private commentAdapter adapter = null;

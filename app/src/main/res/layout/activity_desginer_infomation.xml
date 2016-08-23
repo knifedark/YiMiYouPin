@@ -37,7 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textview_desginerinfo_concept"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:text="+关注"
+                android:textColor="#fff"
+                android:background="#000"/>
 
             <TextView
                 android:id="@+id/textview_description_desginerinfo"
@@ -46,17 +49,25 @@
                 android:layout_below="@+id/button_desginerinfo_collection"
                 android:textSize="23sp" />
 
-            <TableLayout
-                android:id="@+id/tablayout_description_desginerinfo"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tollbar_desginer_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textview_description_desginerinfo" />
+                android:layout_below="@+id/textview_description_desginerinfo">
+
+
+                <TableLayout
+                    android:id="@+id/tablayout_description_desginerinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_description_desginerinfo" />
+            </android.support.v7.widget.Toolbar>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager_description_desginerinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tablayout_description_desginerinfo" />
+                android:layout_below="@+id/tollbar_desginer_info" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

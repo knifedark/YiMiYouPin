@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wangbo.www.yimiyoupin.R;
+import com.wangbo.www.yimiyoupin.androidbean.MagnizeTitleBean;
 import com.wangbo.www.yimiyoupin.androidbean.MazagineDetailBean;
 import com.wangbo.www.yimiyoupin.helper.OkHttpClientHelper;
 import com.wangbo.www.yimiyoupin.helper.ParserObjectFromJson;
@@ -49,13 +50,11 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private WebView webviewMagazineinfo;
     private String designerslabel;
     private Context mContext = this;
-    private int id;//声明拼凑地址 需要的id
+    private String id;//声明拼凑地址 需要的id
     private String url;
     private String webView_url;//webview地址
     private String stringHtml;
-    private String title;
     private String subtitle;
-    private String titleimageurl;
     private String designersName;
     private String designersCity;
     private String designersIamgeurl;
@@ -69,8 +68,10 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private int desginerurlid ;//声明设计师id
     private int commentNum;
     private int collectionNum;
+    private MagnizeTitleBean magnizeTitleBean =new MagnizeTitleBean();//声明画报对象
     private LinearLayout linearlayout_refer_desginer;
-    List<MazagineDetailBean.DataBean.CommentsBean> list_comments ;
+    private List<MazagineDetailBean.DataBean.CommentsBean> list_comments  = new ArrayList<>();
+    private List<MazagineDetailBean.DataBean.ReferProductsBean> refer_products=new ArrayList<>();
 
 
     String CSS_STYPE = "<head><style>*{font-family:'微软雅黑';font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} h2{text-align:center;} img {max-width:100%;display:block;margin-top:16px;}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
@@ -82,9 +83,9 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    textviewTitleMagazineDetail.setText(title);
-                    textviewSubtitleMagazineDetail.setText(subtitle);
-                    simpleDraweeViewTitle.setImageURI(Uri.parse(titleimageurl));
+                    textviewTitleMagazineDetail.setText(magnizeTitleBean.getTitle());
+                    textviewSubtitleMagazineDetail.setText(magnizeTitleBean.getSub_title());
+                    simpleDraweeViewTitle.setImageURI(Uri.parse(magnizeTitleBean.getImage_url()));
                     textViewDessignNameMagnizeDetail.setText(designersName);
                     textviewNameInfoDetail.setText(designersName);
                     textViewCityMagnizeDetail.setText(designersCity);
@@ -113,7 +114,6 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(this);//初始化Frecso
         setContentView(R.layout.activity_magazine_details);//填充数据
         initView();
         initData();//调用初始化数据
@@ -168,7 +168,8 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     @Override
     public void initData() {
         Intent intent = getIntent();
-        id = intent.getIntExtra("id", -1);//获取跳转过来传的值，此处为id
+        id = intent.getStringExtra("id");//获取跳转过来传的值，此处为id
+        magnizeTitleBean.setId(id);//将获取的地址设置到对象中
         url = STARTURL + id + ENDTURL;//初始化网址
         new Thread(new Runnable() {//启动子线程获取数据
             @Override
@@ -180,9 +181,10 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                     MazagineDetailBean.DataBean data = androidbean.getData();
                     webView_url = data.getWeb_url() + "";
                     stringHtml = data.getContent();
-                    title = data.getTitle();
-                    subtitle = data.getSub_title();
-                    titleimageurl = data.getImage_url();
+                    refer_products= data.getRefer_products();//获取产品地址
+                    magnizeTitleBean.setTitle(data.getTitle());//初始化要传递的画报对象id
+                    magnizeTitleBean.setSub_title(data.getSub_title());
+                    magnizeTitleBean.setImage_url(data.getImage_url());
                     MazagineDetailBean.DataBean.DesignersBean designers = data.getDesigners().get(0);
                     designersName = designers.getName();
                     designersCity = designers.getCity();
@@ -234,12 +236,18 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
-            case R.id.linearlayout_refer_desginer:
+            case R.id.relative_desginer:
+            case R.id.linearlayout_refer_desginer://跳转至设计师页面
                 Intent intent_desginer = new Intent();
-                intent_desginer.setClass(mContext,CommentActivity.class);
-                intent_desginer.putExtra("desginerurlid",desginerurlid);
+                intent_desginer.setClass(mContext,DesginerInfomationActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("desginerurlid",desginerurlid);
+                bundle1.putParcelable("MagnizeTitleBean",magnizeTitleBean);
+                bundle1.putParcelableArrayList("ReferProductsBean", (ArrayList<? extends Parcelable>) refer_products);
+                intent_desginer.putExtras(bundle1);
                 startActivity(intent_desginer);
                 break;
+
 
         }
     }

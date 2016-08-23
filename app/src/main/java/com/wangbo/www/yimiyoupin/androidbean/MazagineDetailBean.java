@@ -224,13 +224,34 @@ public class MazagineDetailBean {
             this.refer_articles = refer_articles;
         }
 
-        public static class ReferProductsBean {
+        public static class ReferProductsBean implements Parcelable {
             private String name;
             private int price;
             private int mark_user_num;
             private int id;
             private List<String> cover_images;
             private List<String> images;
+
+            protected ReferProductsBean(Parcel in) {
+                name = in.readString();
+                price = in.readInt();
+                mark_user_num = in.readInt();
+                id = in.readInt();
+                cover_images = in.createStringArrayList();
+                images = in.createStringArrayList();
+            }
+
+            public static final Creator<ReferProductsBean> CREATOR = new Creator<ReferProductsBean>() {
+                @Override
+                public ReferProductsBean createFromParcel(Parcel in) {
+                    return new ReferProductsBean(in);
+                }
+
+                @Override
+                public ReferProductsBean[] newArray(int size) {
+                    return new ReferProductsBean[size];
+                }
+            };
 
             public String getName() {
                 return name;
@@ -278,6 +299,21 @@ public class MazagineDetailBean {
 
             public void setImages(List<String> images) {
                 this.images = images;
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(name);
+                dest.writeInt(price);
+                dest.writeInt(mark_user_num);
+                dest.writeInt(id);
+                dest.writeStringList(cover_images);
+                dest.writeStringList(images);
             }
         }
 
