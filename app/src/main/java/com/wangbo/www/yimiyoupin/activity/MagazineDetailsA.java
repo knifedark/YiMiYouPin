@@ -52,9 +52,7 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private Context mContext = this;
     private String id;//声明拼凑地址 需要的id
     private String url;
-    private String webView_url;//webview地址
     private String stringHtml;
-    private String subtitle;
     private String designersName;
     private String designersCity;
     private String designersIamgeurl;
@@ -71,7 +69,6 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
     private MagnizeTitleBean magnizeTitleBean =new MagnizeTitleBean();//声明画报对象
     private LinearLayout linearlayout_refer_desginer;
     private List<MazagineDetailBean.DataBean.CommentsBean> list_comments  = new ArrayList<>();
-    private List<MazagineDetailBean.DataBean.ReferProductsBean> refer_products=new ArrayList<>();
 
 
     String CSS_STYPE = "<head><style>*{font-family:'微软雅黑';font-size:16px;line-height:20px;} p {color:#333;} a {color:#3E62A6;} h2{text-align:center;} img {max-width:100%;display:block;margin-top:16px;}pre {font-size:9pt;line-height:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style></head>";
@@ -179,9 +176,7 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
                     Object mode = ParserObjectFromJson.jsonStringToModel(jsonString, ParserObjectFromJson.MAZAGINEDETAILBEAN);
                     MazagineDetailBean androidbean = (MazagineDetailBean) mode;
                     MazagineDetailBean.DataBean data = androidbean.getData();
-                    webView_url = data.getWeb_url() + "";
                     stringHtml = data.getContent();
-                    refer_products= data.getRefer_products();//获取产品地址
                     magnizeTitleBean.setTitle(data.getTitle());//初始化要传递的画报对象id
                     magnizeTitleBean.setSub_title(data.getSub_title());
                     magnizeTitleBean.setImage_url(data.getImage_url());
@@ -240,11 +235,7 @@ public class MagazineDetailsA extends SwipeBackToolBarActivity implements MyInte
             case R.id.linearlayout_refer_desginer://跳转至设计师页面
                 Intent intent_desginer = new Intent();
                 intent_desginer.setClass(mContext,DesginerInfomationActivity.class);
-                Bundle bundle1 = new Bundle();
-                bundle1.putInt("desginerurlid",desginerurlid);
-                bundle1.putParcelable("MagnizeTitleBean",magnizeTitleBean);
-                bundle1.putParcelableArrayList("ReferProductsBean", (ArrayList<? extends Parcelable>) refer_products);
-                intent_desginer.putExtras(bundle1);
+                intent_desginer.putExtra("desginerurlid",desginerurlid);
                 startActivity(intent_desginer);
                 break;
 

@@ -3,7 +3,7 @@ package com.wangbo.www.yimiyoupin.androidbean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/22.
+ * 画报页使用，并且设计师详情页页使用
  */
 public class DesginerBean {
     /**
