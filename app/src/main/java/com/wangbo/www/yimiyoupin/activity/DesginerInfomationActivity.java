@@ -197,9 +197,10 @@ public class DesginerInfomationActivity extends SwipeBackToolBarActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desginer_infomation);
         bind = ButterKnife.bind(this);
+        list = new ArrayList<>();
         initData();
         inflater=getLayoutInflater();
-        list = new ArrayList<>();
+
 
     }
 

@@ -1,8 +1,7 @@
-package com.wangbo.www.yimiyoupin.myapplicaition;
+package com.wangbo.www.yimiyoupin.application;
 
 import android.app.Application;
 
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.okhttp.OkHttpClient;
 import com.wangbo.www.yimiyoupin.helper.OkHttpClientHelper;
@@ -16,7 +15,6 @@ public class MyApplication extends Application{
         super.onCreate();
         // 初始化okhttp
         Fresco.initialize(this);
-
         initOkHttp();
 
     }
